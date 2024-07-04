@@ -7,7 +7,7 @@ if (isset($_POST['register'])) {
     $prijs = $_POST['prijs'];
     $categorie = $_POST['categorie'];
 
-    try {
+
         $stmt = $conn->prepare("INSERT INTO producten (productnaam, omschrijving, prijs, categorie) VALUES (:productnaam, :omschrijving, :prijs, :categorie)");
    
         $stmt->bindParam(':productnaam', $createn);
@@ -23,12 +23,6 @@ if (isset($_POST['register'])) {
           
             header("Location: bestel.php");
             exit();
-        } else {
-            echo "Er is een probleem opgetreden bij het toevoegen van het product.";
-        }
-    } catch (PDOException $e) {
-      
-        echo "Databasefout: " . $e->getMessage();
-    }
+        } 
 }
 ?>
