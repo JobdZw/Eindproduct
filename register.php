@@ -6,7 +6,7 @@ if (isset($_POST['register'])) {
     $pass = $_POST['wachtwoord'];
     $mail = $_POST['email'];
 
-    try {
+    
         $stmt = $conn->prepare("INSERT INTO users (Gebruikersnaam, wachtwoord, email) VALUES (:Gebruikersnaam, :wachtwoord, :email)");
         $stmt->bindParam(':Gebruikersnaam', $user);
         $stmt->bindParam(':wachtwoord', $pass);
@@ -18,13 +18,8 @@ if (isset($_POST['register'])) {
             echo "Registratie succesvol!";
             header("Location: inlog.php");
             exit();
-        } else {
-
         }
-    } catch (PDOException $e) {
-
-    }
-}
+    } 
 ?>
 <!DOCTYPE html>
 <html>
