@@ -3,21 +3,21 @@
 include('connection.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $product_id = $_POST['id']; 
-    $product_naam = $_POST['productnaam'];
-    $product_omschrijving = $_POST['omschrijving'];
-    $product_prijs = $_POST['prijs'];
-    $product_categorie = $_POST['categorie']; 
+    $id = $_POST['id']; 
+    $productnaam = $_POST['productnaam'];
+    $omschrijving = $_POST['omschrijving'];
+    $prijs = $_POST['prijs'];
+    $categorie = $_POST['categorie']; 
 
-    $pdo = "UPDATE producten SET productnaam=?, omschrijving=?, prijs=?, categorie=? WHERE id=?";
+    $pdo = "UPDATE producten SET productnaam = :productnaam, omschrijving = :omschrijving, prijs = :prijs, categorie = :categorie WHERE id = :id";
 
     $stmt = $conn->prepare($pdo);
 
-    $stmt->bindParam(1, $product_naam);
-    $stmt->bindParam(2, $product_omschrijving);
-    $stmt->bindParam(3, $product_prijs);
-    $stmt->bindParam(4, $product_categorie);
-    $stmt->bindParam(5, $product_id);
+    $stmt->bindParam(:productnaam, $productnaam);
+    $stmt->bindParam(:omschrijving, $omschrijving);
+    $stmt->bindParam(:prijs, $prijs);
+    $stmt->bindParam(:categorie, $categorie);
+    $stmt->bindParam(:id, $id);
 
     if ($stmt->execute()) {
         echo "Product geüpdatet succesvol";

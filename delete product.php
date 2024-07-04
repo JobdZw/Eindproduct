@@ -2,7 +2,7 @@
 include('connection.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Delete'])) {
-    $id = $_POST['id'];
+    $id = $_POST['delete'];
 
    
     $stmt = $conn->prepare("DELETE FROM producten WHERE id = :id");
